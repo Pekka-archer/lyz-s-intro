@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>陆业镇 · 汕大医学生的探路笔记</title>
+<meta name="description" content="陆业镇（小陆学长），汕头大学医学院大一学生。一个非典型医学生：泡图书馆、穿白大褂进科室、买菜做饭、坐高铁到处跑。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cg transform='rotate(-30 12 12)'%3E%3Ccircle cx='7.3' cy='3.2' r='1.45'/%3E%3Crect x='5.5' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Crect x='14.9' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Ccircle cx='16.7' cy='20.8' r='1.45'/%3E%3C/g%3E%3C/svg%3E">
+
+<!-- 性能优化：使用 preconnect 并行预加载字体，消除 @import 带来的首屏阻塞 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+
+<script>document.documentElement.classList.add('js');</script>
+
+<style>
+html, body { background: #000000 !important; color: #ffffff; }
+
+@font-face {
+  font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("inter.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap; src: url("instrument-serif-italic.woff2") format("woff2");
+}
+
+:root {
+  --bg: #000000;
+  --text: #ffffff;
+  --muted: #9a9a9a;
+  --border: rgba(255, 255, 255, 0.16);
+  --border-soft: rgba(255, 255, 255, 0.12);
+
+  --logo: 15.5px; --logo-mark: 22px;
+  --nav: 14px; --nav-h: 40px;
+  --btn: 13.5px; --btn-h: 40px; --hero-btn-h: 42px;
+  --h1: 48px; --lede: 15.5px; --badge: 12.5px;
+  --stat-size: 13.5px; --stat-i1: 20px; --stat-i2-w: 38px; --stat-i2-h: 21px;
+  
+  --header-y: 22px; --header-x: 40px;
+  --stats-x: 72px; --stats-y: 36px;
+  --hero-gap: 85px; --copy-max: 860px; --lede-max: 470px;
+
+  /* CV Integration Tokens */
+  --c-bg: #000000; --c-surface: rgba(255,255,255,0.03); 
+  --c-muted: var(--muted); --c-dim: #64748B;
+  --c-border: var(--border); --c-border-hi: rgba(255,255,255,0.4);
+  --c-primary: #ffffff;
+  --radius-md: 8px; --radius-lg: 12px; --radius-full: 9999px;
+  --ease: cubic-bezier(.16,1,.3,1); --transition: .4s var(--ease); --maxw: 1200px;
+}
+
+@media (min-width: 1600px) { :root { --logo: 17px; --logo-mark: 24px; --nav: 15px; --nav-h: 44px; --btn: 15px; --btn-h: 44px; --hero-btn-h: 48px; --h1: 64px; --lede: 18px; --badge: 13.5px; --stat-size: 15px; --stat-i2-w: 45px; --stat-i2-h: 24px; --header-y: 28px; --header-x: 64px; --stats-x: 96px; --stats-y: 44px; --copy-max: 980px; --lede-max: 540px; } }
+@media (min-width: 1920px) { :root { --logo: 18px; --logo-mark: 26px; --nav: 16px; --nav-h: 48px; --btn: 16px; --btn-h: 48px; --hero-btn-h: 52px; --h1: 76px; --lede: 20px; --badge: 14.5px; --stat-size: 16px; --header-y: 32px; --header-x: 80px; --stats-x: 120px; --stats-y: 52px; --copy-max: 1120px; } }
+@media (min-width: 901px) and (max-width: 1279px) { :root { --logo: 15px; --nav: 13px; --nav-h: 36px; --btn: 13px; --btn-h: 38px; --hero-btn-h: 40px; --h1: 42px; --lede: 15px; --header-y: 16px; --header-x: 28px; --stats-x: 36px; --stats-y: 28px; --hero-gap: 64px; } }
+@media (max-width: 900px) { :root { --logo: 16px; --btn: 15px; --btn-h: 46px; --hero-btn-h: 48px; --h1: 36px; --lede: 16.5px; --header-y: 16px; --header-x: 18px; --stats-x: 20px; --stats-y: 28px; --hero-gap: 36px; } }
+
+html, body {
+  background: var(--bg); color: #ffffff;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;
+  overflow-x: hidden; position: relative; scroll-behavior: smooth; margin: 0; padding: 0;
+}
+*, *::before, *::after { box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+/* 关键修复：视频绝对定位且仅限首屏 (100vh) */
+.hero-photo { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; height: 100dvh; z-index: 0; overflow: hidden; background: #000; }
+.hero-photo canvas { display: block; }
+.hero-photo canvas, .hero-photo video { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-photo video { object-fit: cover; }
+/* 微信（安卓 X5 内核）在视频没真正出画面时会把 <video> 渲染成一块不透明黑屏，正好压住下面的
+   Canvas 粒子层；下面是两重兜底：移动端只保留粒子，桌面端视频不出画面时由 JS 加 .is-off 隐藏 */
+.hero-photo video.is-off { display: none; }
+@media (max-width: 900px) {
+  .hero-photo video { display: none; }
+}
+.hero-photo::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,1) 100%);
+}
+
+.grain {
+  position: fixed; inset: 0; z-index: 100; pointer-events: none; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* 性能优化：移动端彻底禁用极其耗费 GPU 的 SVG 噪点背景 */
+@media (max-width: 900px) {
+  .grain { display: none; }
+}
+
+.page { position: relative; z-index: 1; display: grid; grid-template-rows: auto 1fr auto; min-height: 100vh; min-height: 100dvh; }
+
+.header {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  padding: var(--header-y) var(--header-x) 10px; z-index: 50; position: relative;
+}
+.logo {
+  display: inline-flex; align-items: center; gap: 9px; justify-self: start;
+  font-size: var(--logo); font-weight: 600; letter-spacing: -0.03em; color: #fff;
+}
+.logo svg { width: var(--logo-mark); height: var(--logo-mark); }
+.logo-suffix { font-weight: 400; color: var(--muted); }
+
+#site-nav { display: flex; align-items: center; gap: 8px; justify-self: center; }
+#site-nav a {
+  height: var(--nav-h); padding: 0 18px; border-radius: 7px; overflow: hidden; position: relative;
+  border: 1px solid rgba(198,198,198,0.55); background: linear-gradient(105deg, #050505 0%, #2a2a2a 48%, #4a4a4a 100%);
+  color: #f3f3f3; font-size: var(--nav); font-weight: 400; white-space: nowrap;
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+#site-nav a::before {
+  content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.16) 50%, transparent 70%);
+  transform: translateX(-120%); transition: transform 0.6s ease;
+}
+#site-nav a:hover {
+  border-color: rgba(235,235,235,0.9); background: linear-gradient(105deg, #111 0%, #3a3a3a 45%, #6a6a6a 100%); box-shadow: 0 0 18px rgba(200,210,230,0.18);
+}
+#site-nav a:hover::before { transform: translateX(120%); }
+
+.header-cta { justify-self: end; }
+.burger { display: none; }
+
+@media (max-width: 900px) {
+  .menu-backdrop { display: block; position: fixed; inset: 0; z-index: 40; background: rgba(8,8,8,0.42); opacity: 0; visibility: hidden; transition: 0.28s; }
+  body.menu-open .menu-backdrop { opacity: 1; visibility: visible; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+  body.menu-open { overflow: hidden; }
+  .header { grid-template-columns: 1fr auto auto; gap: 12px; padding-top: max(16px, env(safe-area-inset-top)); }
+  .logo, .header-cta, .burger { z-index: 80; }
+  .burger { display: flex; width: 42px; height: 42px; border-radius: 6px; border: 1px solid var(--border); background: rgba(8,8,8,0.55); align-items: center; justify-content: center; flex-direction: column; gap: 5px; }
+  .burger i { display: block; width: 16px; height: 1.5px; background: #fff; transition: 0.25s ease; }
+  body.menu-open .burger i:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  body.menu-open .burger i:nth-child(2) { opacity: 0; }
+  body.menu-open .burger i:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  
+  #site-nav {
+    position: fixed; inset: 0; z-index: 45; flex-direction: column; gap: 12px;
+    padding: max(96px, calc(env(safe-area-inset-top) + 88px)) 22px 32px;
+    background: transparent; transform: translateY(-10px); opacity: 0; visibility: hidden; transition: 0.28s;
+  }
+  body.menu-open #site-nav { transform: translateY(0); opacity: 1; visibility: visible; }
+  #site-nav a { width: 100%; height: 56px; font-size: 19px; border-radius: 10px; justify-content: center; display: flex; align-items: center; }
+}
+
+.btn {
+  position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center;
+  height: var(--btn-h); padding: 0 16px; border-radius: 6px; font-size: var(--btn); font-weight: 500; white-space: nowrap;
+  transition: all 0.35s; gap: 6px;
+}
+.btn::after {
+  content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.45) 48%, transparent 76%);
+  transform: translateX(-130%); transition: transform 0.65s ease;
+}
+.btn:hover::after { transform: translateX(130%); }
+.btn-solid {
+  background: linear-gradient(180deg, #ffffff 0%, #e7e7e7 48%, #cfcfcf 100%); color: #111; border: 1px solid #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,0.95);
+}
+.btn-solid:hover {
+  background: linear-gradient(180deg, #ffffff 0%, #f3f6ff 42%, #d5def2 100%); border-color: #f2f6ff; box-shadow: inset 0 1px 0 #fff, 0 0 22px rgba(186,208,255,0.35), 0 8px 18px rgba(255,255,255,0.12);
+}
+.btn-ghost {
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.45) 50%, rgba(160,175,200,0.08)); color: #fff; border: 1px solid rgba(198,198,198,0.45); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12); backdrop-filter: blur(16px);
+}
+.btn-ghost:hover {
+  border-color: rgba(220,230,255,0.8); box-shadow: 0 0 24px rgba(170,200,255,0.28);
+}
+
+.hero { display: flex; align-items: flex-end; justify-content: center; padding: 8px 24px var(--hero-gap); min-height: 0; }
+.hero-copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; max-width: var(--copy-max); width: 100%; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 22px; padding: 9px 15px; border-radius: 5px;
+  background: linear-gradient(90deg, #7d7d7d 0%, #2a2a2a 52%, #0a0a0a 100%);
+  color: #f2f2f2; font-size: var(--badge);
+}
+.badge svg { width: 18px; height: 20px; filter: drop-shadow(0 0 3px rgba(255,255,255,0.45)); }
+
+.headline { font-size: var(--h1); font-weight: 500; letter-spacing: -0.02em; line-height: 1.12; color: #fff; display: flex; flex-direction: column; align-items: center; }
+.headline-line { display: block; overflow: hidden; padding: 0.06em 0.15em 0.14em; }
+h1 em { font-family: "Instrument Serif", "Times New Roman", "STZhongsong", "SimSun", serif; font-style: italic; font-weight: 400; font-size: 1.08em; color: var(--muted); }
+
+.lede { max-width: var(--lede-max); margin-top: 18px; color: var(--muted); font-size: var(--lede); line-height: 1.55; }
+.hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 26px; }
+.hero-actions .btn { height: var(--hero-btn-h); padding: 0 22px; }
+
+.stats {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 0 var(--stats-x) var(--stats-y); padding-bottom: max(var(--stats-y), env(safe-area-inset-bottom)); color: var(--stat);
+}
+.stat { display: inline-flex; align-items: center; gap: 14px; font-size: var(--stat-size); white-space: nowrap; }
+.stat svg { flex-shrink: 0; }
+.stat-icon-wide { width: var(--stat-i2-w); height: var(--stat-i2-h); }
+
+@media (max-width: 900px) {
+  .hero { padding: 20px 20px 64px; }
+  .stats { flex-direction: column; text-align: center; gap: 16px; }
+  .stat { justify-content: center; white-space: normal; }
+  .hero-actions { flex-direction: column; width: 100%; } 
+  .hero-actions .btn { width: 100%; }
+}
+
+.appear { opacity: 1; animation-duration: 1.05s; animation-fill-mode: both; animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); animation-delay: var(--d, 0.08s); }
+.appear--scale { animation-name: in-scale; }
+.appear--soft { animation-name: in-soft; }
+.appear--mask { animation-name: in-mask; }
+.appear--pop { animation-name: in-pop; }
+.appear--btn { animation-name: in-btn; }
+.appear--side { animation-name: in-side; }
+.appear--stat { animation-name: in-stat; }
+
+@keyframes in-scale { 0% { opacity: 0; transform: scale(0.84); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes in-soft { 0% { opacity: 0; transform: translateY(14px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes in-mask { 0% { opacity: 0; transform: translateY(40%); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes in-pop { 0% { opacity: 0; transform: scale(0.9); } 70% { opacity: 1; transform: scale(1.03); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes in-btn { 0% { opacity: 0; transform: translateY(18px) scale(0.94); } 100% { opacity: 1; transform: none; } }
+@keyframes in-side { 0% { opacity: 0; transform: translateX(22px); } 100% { opacity: 1; transform: translateX(0); } }
+@keyframes in-stat { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+
+.badge-star { animation: in-star 0.9s cubic-bezier(0.16,1,0.3,1) 0.28s both; }
+@keyframes in-star { 0% { transform: scale(0.2) rotate(-50deg); } 65% { transform: scale(1.2) rotate(8deg); } 100% { transform: scale(1) rotate(0deg); } }
+h1 em { animation: in-em 1.2s cubic-bezier(0.16,1,0.3,1) 0.72s both; }
+@keyframes in-em { 0% { opacity: 0.35; filter: blur(4px); } 100% { opacity: 1; filter: blur(0); } }
+.is-in { animation: none !important; opacity: 1 !important; transform: none !important; clip-path: none !important; filter: none !important; }
+
+.cv-wrapper { 
+  position: relative; z-index: 10; 
+  background: #000000; 
+  padding-bottom: 80px; 
+}
+.offer { padding: 60px 0 10px; }
+.offer-head, .chapter-head { max-width: var(--maxw); margin: 0 auto 28px; padding: 0 20px; }
+.offer-head h2, .chapter-head h2 { font-size: clamp(1.4rem,5.6vw,2.6rem); font-weight: 500; letter-spacing: -0.03em; }
+.offer-head p, .chapter-head p { margin-top: 10px; color: var(--c-muted); max-width: 48ch; line-height: 1.6; }
+.offer-grid { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; display: grid; gap: 14px; }
+.spot {
+  position: relative; overflow: hidden; padding: 24px 22px; border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg); background: var(--c-surface); transition: var(--transition);
+}
+.spot:hover { border-color: var(--c-border-hi); transform: translateY(-3px); }
+.spot .ico { font-size: 1.4rem; line-height: 1; display: block; margin-bottom: 12px; filter: grayscale(1); }
+.spot h3 { font-size: 1.05rem; margin-bottom: 8px; font-weight: 500; }
+.spot p { font-size: .9rem; color: var(--c-muted); line-height: 1.6; }
+
+.chapter { padding: 72px 0 8px; scroll-margin-top: 80px; }
+.chapter-num { font-size: clamp(3.2rem,12vw,5.6rem); font-weight: 800; line-height: 1; letter-spacing: -.05em; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.2); display: block; }
+.chapter-head h2 { margin-top: -.42em; }
+.chapter-head h2::after { content: ""; display: block; width: 52px; height: 1px; margin-top: 16px; background: linear-gradient(90deg, #fff, transparent); }
+
+.entries { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+.entry { display: grid; gap: 22px; padding: 38px 0; border-top: 1px solid var(--c-border); }
+.entry:first-child { border-top: none; }
+.entry-media { position: relative; display: block; width: 100%; overflow: hidden; border-radius: var(--radius-lg); border: 1px solid var(--c-border); background: #080808; cursor: zoom-in; transition: border-color var(--transition); }
+.entry-media:hover { border-color: rgba(255,255,255,0.4); }
+.entry-media img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.25); transition: filter 0.4s ease; }
+.entry-media:hover img { filter: grayscale(0); }
+.ar-portrait { aspect-ratio: 3/4; } .ar-landscape { aspect-ratio: 16/10; } .ar-phone { aspect-ratio: 9/19; } .ar-doc { aspect-ratio: 4/5; } .ar-square { aspect-ratio: 1/1; }
+.entry-media .zoom, .entry-media .count { position: absolute; border: 1px solid var(--c-border); color: var(--c-muted); background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); }
+.entry-media .zoom { top: 12px; right: 12px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: .95rem; opacity: 0; transition: var(--transition); }
+.entry-media:hover .zoom { opacity: 1; }
+.entry-media .count { left: 12px; bottom: 12px; padding: 4px 10px; border-radius: var(--radius-full); font-size: .72rem; }
+
+.entry-tag { display: inline-block; margin-bottom: 12px; padding: 3px 10px; border-radius: var(--radius-full); font-size: .7rem; letter-spacing: .1em; color: #fff; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); }
+.entry-body h3 { font-size: 1.16rem; margin-bottom: 8px; font-weight: 500; }
+.entry-body p { color: var(--c-muted); font-size: .95rem; line-height: 1.6; }
+.entry-body p + p { margin-top: 10px; }
+.entry-note { margin-top: 14px; padding-left: 12px; border-left: 2px solid rgba(255,255,255,0.3); font-size: .86rem; color: var(--c-dim); }
+
+.timeline { max-width: 820px; margin: 0 auto; padding: 0 20px; position: relative; }
+.timeline::before { content: ""; position: absolute; left: calc(20px + 7px); top: 10px; bottom: 14px; width: 1px; background: linear-gradient(180deg, #fff, rgba(255,255,255,0.1), transparent); }
+.tl-item { position: relative; padding: 0 0 30px 44px; }
+.tl-item::before { content: ""; position: absolute; left: 0; top: 7px; width: 15px; height: 15px; border-radius: 50%; background: #000; border: 2px solid #fff; box-shadow: 0 0 10px rgba(255,255,255,0.15); }
+.tl-when { font-size: .74rem; letter-spacing: .16em; color: var(--c-muted); }
+.tl-title { font-weight: 500; margin-top: 4px; font-size: 1.05rem; }
+.tl-desc { font-size: .9rem; color: var(--c-muted); line-height: 1.6; margin-top: 4px; }
+.tl-kind{display:inline-block;margin-top:8px;padding:2px 9px;border-radius:var(--radius-full);font-size:.68rem;letter-spacing:.08em;border:1px solid;}
+.k-edu{color:#ccc;border-color:rgba(255,255,255,.2)}
+.k-work{color:#fff;border-color:rgba(255,255,255,.3)}
+.k-prac{color:#999;border-color:rgba(255,255,255,.15)}
+
+.footer { margin-top: 40px; border-top: 1px solid var(--c-border); background: #000; }
+.footer-inner { max-width: var(--maxw); margin: 0 auto; padding: 56px 20px 40px; }
+.contact { display: grid; gap: 14px; margin-top: 28px; }
+.contact-card { padding: 20px 22px; border: 1px solid var(--c-border); border-radius: var(--radius-lg); background: var(--c-surface); }
+.copy-btn { padding: 6px 14px; border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius-full); font-size: .76rem; transition: var(--transition); background: transparent; color: #fff;}
+.copy-btn:hover { background: rgba(255,255,255,0.08); }
+.footer-meta { margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--c-border); display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: .76rem; color: var(--c-muted); }
+
+@media (min-width: 820px) {
+  .offer-head, .chapter-head { padding: 0 40px; }
+  .offer-grid { padding: 0 40px; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .entries { padding: 0 40px; }
+  .entry { grid-template-columns: 1fr 1fr; align-items: center; gap: 52px; padding: 56px 0; }
+  .entry:nth-child(even) .entry-media { order: 2; }
+  .timeline { padding: 0 40px; }
+  .timeline::before { left: calc(40px + 7px); }
+  .contact { grid-template-columns: 1fr 1fr; }
+}
+
+.lightbox { border: none; padding: 0; background: transparent; margin: auto; max-width: 100vw; max-height: 100vh; color: #fff; }
+.lightbox::backdrop { background: rgba(0,0,0,0.92); }
+.lb-box { position: relative; display: grid; place-items: center; padding: 52px 14px 60px; min-width: min(92vw, 900px); }
+.lb-img { max-width: 92vw; max-height: 74vh; width: auto; height: auto; border-radius: var(--radius-md); border: 1px solid var(--c-border); object-fit: contain; }
+.lb-btn, .lb-close { position: absolute; border-radius: 50%; display: grid; place-items: center; background: rgba(20,20,20,0.8); border: 1px solid var(--c-border); color: #fff; backdrop-filter: blur(8px); transition: var(--transition); }
+.lb-btn { top: 50%; transform: translateY(-50%); width: 44px; height: 44px; font-size: 1.5rem; }
+.lb-close { top: 8px; right: 8px; width: 40px; height: 40px; font-size: 1.3rem; }
+.lb-btn:hover, .lb-close:hover { border-color: rgba(255,255,255,0.4); }
+.lb-prev { left: 10px; } .lb-next { right: 10px; }
+.lb-cap { margin-top: 14px; text-align: center; font-size: .84rem; color: var(--c-muted); max-width: 70ch; }
+
+.js [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.js [data-reveal].in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+.drawer-backdrop {
+  position: fixed; inset: 0; z-index: 90; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  opacity: 0; visibility: hidden; transition: 0.4s ease;
+}
+.drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; width: 100%; max-width: 860px; z-index: 100;
+  background: #050505; border-left: 1px solid var(--border); box-shadow: -10px 0 40px rgba(0,0,0,0.8);
+  transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex; flex-direction: column;
+}
+body.drawer-open { overflow: hidden; }
+body.drawer-open .drawer-backdrop { opacity: 1; visibility: visible; }
+body.drawer-open .drawer { transform: translateX(0); }
+
+.drawer-header {
+  display: flex; align-items: center; justify-content: space-between; padding: 20px 24px;
+  border-bottom: 1px solid var(--border); background: #000; flex-shrink: 0;
+}
+.drawer-title { font-size: 1.1rem; font-weight: 500; color: #fff; letter-spacing: -0.01em; }
+.drawer-body { flex: 1; position: relative; overflow: hidden; background: #080808; }
+.drawer-body iframe { width: 100%; height: 100%; border: none; position: relative; z-index: 2; }
+.drawer-fallback {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); z-index: 1; font-size: 0.95rem; flex-direction: column; gap: 12px; text-align: center; padding: 20px;
+}
+/* 移动端「逐页图片」预览（A 方案）：手机/微信内核不在 iframe 里渲染 PDF，改成逐页图片阅读 */
+.pdfreader { position: absolute; inset: 0; display: none; flex-direction: column; background: #080808; }
+.pdfreader-scroll {
+  flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain; padding: 8px;
+}
+.pdfreader-page {
+  display: block; width: 100%; height: auto; margin: 0 0 8px; border-radius: 6px;
+  background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+.pdfreader-hint { color: var(--muted); font-size: 12px; line-height: 1.7; text-align: center; padding: 2px 6px 10px; margin: 0; }
+.pdfreader-bar {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--border); background: #000;
+}
+.pdfreader-bar .btn { padding: 0 14px; }
+.pdfreader-bar .btn[disabled] { opacity: 0.35; pointer-events: none; }
+.pdfreader-count { color: var(--muted); font-size: 13px; min-width: 66px; text-align: center; font-variant-numeric: tabular-nums; }
+/* 移动端隐藏 PDF iframe：手机浏览器一律不在 iframe 内渲染 PDF，留着只会是一片白屏；
+   同时把移动端预览从 iframe 切换到上面的逐页图片阅读器 */
+@media (max-width: 900px) {
+  .drawer-body iframe { display: none; }
+  .drawer-fallback { display: none; }
+  .pdfreader { display: flex; }
+}
+@media (max-width: 600px) {
+  .drawer-header { padding: 16px; flex-wrap: wrap; gap: 10px; }
+  .drawer-title { order: -1; width: 100%; text-align: center; margin-bottom: 8px; }
+}
+</style>
+</head>
+<body>
+  <div class="hero-photo">
+    <!-- 粒子动效：纯 Canvas 绘制，不依赖外部视频、不受自动播放策略限制（微信内置浏览器同样可见） -->
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <!-- 性能优化：保留了极小占位海报(poster)与 .hero-photo 的黑底做兜底 -->
+    <!-- 注意：视频不能再带不透明背景色，否则播放失败时会整块盖住下面的粒子动效 -->
+    <!-- 微信兼容：webkit-playsinline / x5-* 让微信 X5、WKWebView 允许内联自动播放；播不出来时由上方 Canvas 粒子兜底 -->
+    <video src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa.mp4" autoplay loop muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false" preload="auto" poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></video>
+  </div>
+  <div class="grain"></div>
+
+  <div class="page">
+    <div class="menu-backdrop"></div>
+    <header class="header">
+      <a class="logo appear appear--scale" href="#top" aria-label="Home" style="--d: 0.08s">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <g transform="rotate(-30 12 12)">
+            <circle cx="7.3" cy="3.2" r="1.45"/>
+            <rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+            <rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+            <circle cx="16.7" cy="20.8" r="1.45"/>
+          </g>
+        </svg>
+        陆业镇<span class="logo-suffix">.ai</span>
+      </a>
+      <nav id="site-nav" aria-label="Primary">
+        <a href="#offer" class="appear appear--scale" style="--d: 0.16s">干货分享</a>
+        <a href="#study" class="appear appear--soft" style="--d: 0.28s">学术科研</a>
+        <a href="#work" class="appear appear--scale" style="--d: 0.40s">学生工作</a>
+        <a href="#timeline" class="appear appear--soft" style="--d: 0.52s">关于我</a>
+      </nav>
+      <a href="#contact" class="btn btn-solid header-cta appear appear--scale" style="--d: 0.34s">联系我</a>
+      <button class="burger appear appear--scale" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu" style="--d: 0.34s">
+        <i></i><i></i><i></i>
+      </button>
+    </header>
+
+    <main class="hero" id="top">
+      <div class="hero-copy">
+        <div class="badge appear appear--pop" style="--d: 0.22s">
+          <svg viewBox="0 0 24 24" fill="white" class="badge-star">
+            <path d="M12 2.6C12.55 2.6 12.88 3.15 13.08 4.7c.62 4.7 1.52 5.6 6.22 6.22 1.55.2 2.1.53 2.1 1.08s-.55.88-2.1 1.08c-4.7.62-5.6 1.52-6.22 6.22-.2 1.55-.53 2.1-1.08 2.1s-.88-.55-1.08-2.1c-.62-4.7-1.52-5.6-6.22-6.22C3.15 12.88 2.6 12.55 2.6 12s.55-.88 2.1-1.08c4.7-.62 5.6-1.52 6.22-6.22C11.12 3.15 11.45 2.6 12 2.6Z"/>
+          </svg>
+          Shantou University Medical College
+        </div>
+        
+        <h1 class="headline" data-split-title>
+          <span class="headline-line appear appear--mask" style="--d: 0.42s">陆业镇 <em>小陆学长</em></span>
+          <span class="headline-line appear appear--mask" style="--d: 0.62s">汕大医学生的探路笔记.</span>
+        </h1>
+        
+        <p class="lede" data-blur-slogan>一个非典型医学生：泡图书馆、穿白大褂进科室、买菜做饭、坐高铁到处跑。比起复刻别人的剧本，我更想做比大家多走半步的探路者。</p>
+        
+        <div class="hero-actions">
+          <button id="openGuideBtn" class="btn btn-solid appear appear--btn" style="--d: 0.96s">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:2px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            新生入学指南
+          </button>
+          <a href="#offer" class="btn btn-ghost appear appear--side" style="--d: 1.10s">获取干货经验</a>
+          <a href="#study" class="btn btn-ghost appear appear--side" style="--d: 1.24s">浏览真实履历</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="stats">
+      <div class="stat appear appear--stat" style="--d: 1.12s">
+        <svg viewBox="0 0 24 24" width="20" height="20">
+          <rect x="3.4" y="2.6" width="7.2" height="18.8" rx="3.6" fill="url(#grad-left)"/>
+          <rect x="13.4" y="2.6" width="7.2" height="18.8" rx="3.6" fill="url(#grad-right)"/>
+          <rect x="9.2" y="10.9" width="5.6" height="2.2" rx="1.1" fill="#4a4a4a"/>
+          <defs>
+            <linearGradient id="grad-left" x1="3" y1="2" x2="14" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0.38" stop-color="#ffffff"/><stop offset="0.62" stop-color="#3a3a3a"/></linearGradient>
+            <linearGradient id="grad-right" x1="3" y1="2" x2="14" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0.38" stop-color="#3a3a3a"/><stop offset="0.62" stop-color="#ffffff"/></linearGradient>
+          </defs>
+        </svg>
+        281+ 每日复盘笔记
+      </div>
+      <div class="stat appear appear--stat" style="--d: 1.28s">
+        <svg viewBox="0 0 24 24" width="20" height="20">
+          <rect x="2.4" y="2.4" width="19.2" height="19.2" rx="6.2" fill="#ffffff"/>
+          <path d="M12 7.1v7.4 M8.15 12.35L12 16.2l3.85-3.85" stroke="#111" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        前 25% 专业成绩排位
+      </div>
+      <div class="stat appear appear--stat" style="--d: 1.44s">
+        <svg viewBox="0 0 40 22" class="stat-icon-wide">
+          <circle cx="10.2" cy="11" r="9.2" fill="#2b2b2b"/>
+          <ellipse cx="10.2" cy="12.1" rx="4.15" ry="3.7" fill="#f4f4f4"/>
+          <circle cx="9.2" cy="11.5" r="0.7" fill="#1a1a1a"/>
+          <circle cx="11.2" cy="11.5" r="0.7" fill="#1a1a1a"/>
+          <circle cx="20.2" cy="11" r="9.2" fill="#ffffff"/>
+          <circle cx="18.5" cy="10" r="1.7" fill="#1a1a1a"/>
+          <circle cx="21.9" cy="10" r="1.7" fill="#1a1a1a"/>
+          <path d="M18.5 13 Q20.2 15 21.9 13" stroke="#111" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <circle cx="30.2" cy="11" r="9.2" fill="#f26b1d"/>
+          <text x="30.2" y="15.1" font-family="'Inter', sans-serif" font-weight="700" font-size="12.5" fill="#ffffff" text-anchor="middle">e</text>
+        </svg>
+        100万+ 步公益捐步
+      </div>
+    </footer>
+  </div>
+
+  <div class="cv-wrapper">
+    <section class="offer" id="offer">
+      <header class="offer-head" data-reveal>
+        <h2>我踩过的坑，和你用得上的东西</h2>
+        <p>我把自己定位为比大家多走半步的「探路者」。与其甩出一堆光鲜的履历，不如看看下面这些事里，有没有你能用得上的资源。</p>
+      </header>
+      <div class="offer-grid">
+        <article class="spot" data-reveal>
+          <span class="ico" aria-hidden="true">🩺</span>
+          <h3>医学生存与打怪升级</h3>
+          <p>熬过了大一繁重的课业。如果你对医学基础课感到头大，或者想知道怎么在化学实验里少炸几个烧杯，随时拉我交流。</p>
+        </article>
+        <article class="spot" data-reveal>
+          <span class="ico" aria-hidden="true">💼</span>
+          <h3>跨界折腾与职场初探</h3>
+          <p>大一就跑去招聘会和 HR 斗智斗勇，现在兼任数码公司区域主管。想搞点数码副业、了解商业运营，我们可以一起头脑风暴。</p>
+        </article>
+        <article class="spot" data-reveal>
+          <span class="ico" aria-hidden="true">🗺️</span>
+          <h3>汕大生活排雷指南</h3>
+          <p>从选课避坑、汕大青年怎么运作，到汕头哪家店最好吃、周末去哪放风——我的探店雷达和一百多万步公益步数不是白走的。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 篇章 01：学业科研 -->
+    <section class="chapter" id="study">
+      <header class="chapter-head" data-reveal>
+        <span class="chapter-num">01</span>
+        <h2>学业与科研</h2>
+        <p>医学基础课、实验课、科室见习。想在化学实验里少炸几个烧杯，先来看看我踩过的坑。</p>
+      </header>
+      <div class="entries">
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-portrait" type="button" aria-label="放大查看：大一专业学业成绩">
+            <img src="./图片/09-大一成绩证明.jpg" alt="大一专业学业成绩证明" width="1279" height="1706" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+          </button>
+          <div class="entry-body">
+            <span class="entry-tag">学业成绩</span>
+            <h3>大一专业学业成绩</h3>
+            <p>汕头大学医学院出具的成绩证明。大一课业不轻，能稳住前 25%，靠的不是熬夜，是每天把该做的事做完。</p>
+          </div>
+        </article>
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-landscape" type="button" aria-label="放大查看：学术交流会现场">
+            <img src="./图片/32-学术交流会现场.jpg" alt="学术交流会现场合影" width="1706" height="1279" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+            <span class="count">同组 2 张</span>
+          </button>
+          <template data-more>
+            <img data-src="./图片/27-校企交流-西装照.jpg" data-cap="校企交流现场">
+          </template>
+          <div class="entry-body">
+            <span class="entry-tag">学术交流</span>
+            <h3>学术交流会现场</h3>
+            <p>换上正装去听一场交流会。第一次近距离感受「做研究的人」是怎么提问、怎么表达的，也顺便练了怎么和外籍教授、业界前辈自如沟通。</p>
+          </div>
+        </article>
+        
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-portrait" type="button" aria-label="放大查看：课程实验实操记录">
+            <img src="./图片/18-实验室实操-试剂.jpg" alt="课程实验实操记录" width="1279" height="1706" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+            <span class="count">同组 2 张</span>
+          </button>
+          <template data-more>
+            <img data-src="./图片/04-实验室实操-手术室.jpg" data-cap="科室实操观察">
+          </template>
+          <div class="entry-body">
+            <span class="entry-tag">实验实操</span>
+            <h3>课程实验实操记录</h3>
+            <p>从称量、配液到观察反应，每一步都讲究规范。想少炸几个烧杯，秘诀只有一条：手套戴好，步骤读三遍再动手。</p>
+          </div>
+        </article>
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-portrait" type="button" aria-label="放大查看：医院科室学习留影">
+            <img src="./图片/25-白大褂科室自拍.jpg" alt="穿白大褂在医院科室学习" width="1024" height="1366" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+          </button>
+          <div class="entry-body">
+            <span class="entry-tag">科室见习</span>
+            <h3>医院科室学习留影</h3>
+            <p>穿上白大褂进科室观摩，才真正理解课本上那些名词背后，是具体的人和具体的事。</p>
+          </div>
+        </article>
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-landscape" type="button" aria-label="放大查看：课后和教授交流">
+            <img src="./图片/08-与老师合影.jpg" alt="课后与老师交流合影" width="1364" height="1024" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+          </button>
+          <div class="entry-body">
+            <span class="entry-tag">师生交流</span>
+            <h3>课后和教授交流</h3>
+            <p>课后追着老师问问题，是这一年最有收获的习惯之一。问得越具体，得到的答案越有用。</p>
+          </div>
+        </article>
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-landscape" type="button" aria-label="放大查看：在校自习学习">
+            <img src="./图片/01-图书馆自习.jpg" alt="在校自习学习" width="1706" height="1279" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+          </button>
+          <div class="entry-body">
+            <span class="entry-tag">图书馆</span>
+            <h3>在校自习学习</h3>
+            <p>我是个爱泡图书馆的医学生。自习是大学里最不需要天赋的一件事：坐下来，把书翻开，剩下的交给时间。</p>
+          </div>
+        </article>
+        
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-portrait" type="button" aria-label="放大查看：公司集训现场">
+            <img src="./图片/17-线上学习.jpg" alt="公司集训现场" width="1279" height="1706" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+          </button>
+          <div class="entry-body">
+            <span class="entry-tag">公司集训</span>
+            <h3>公司集训</h3>
+            <p>从理论框架到落地执行的封闭式高压训练。职场不看你「听过」多少，只看你能不能把策略变成拿到结果的实战能力。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 篇章 02：学生工作 -->
+    <section class="chapter" id="work">
+      <header class="chapter-head" data-reveal>
+        <span class="chapter-num">02</span>
+        <h2>学生工作与职场初探</h2>
+        <p>大一就跑去招聘会和 HR 斗智斗勇，现在兼任数码公司区域主管。头衔只是结果，能不能把事做成才是核心。</p>
+      </header>
+      <div class="entries">
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-square contain" type="button" aria-label="放大查看：江南区主管聘用证书">
+            <img src="./图片/06-聘用证书-江南区主管.png" alt="江南区主管聘用证书" width="551" height="568" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+          </button>
+          <div class="entry-body">
+            <span class="entry-tag">受聘</span>
+            <h3>数码公司江南区主管</h3>
+            <p>2025 年获聘为江南区主管，负责区域业务对接与团队协作。想了解商业运营或在大学搞点数码副业，可以一起头脑风暴。</p>
+          </div>
+        </article>
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-portrait" type="button" aria-label="放大查看：招聘会现场">
+            <img src="./图片/11-招聘会现场.jpg" alt="招聘会现场" width="1080" height="1920" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+          </button>
+          <div class="entry-body">
+            <span class="entry-tag">招聘会</span>
+            <h3>招聘会现场与企业交流</h3>
+            <p>走进招聘会，坐在咨询处对面，第一次以「求职者」身份和企业聊专业、聊未来，提前感知真实社会的用人需求。</p>
+          </div>
+        </article>
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-doc contain" type="button" aria-label="放大查看：学生代表大会参会记录">
+            <img src="./图片/23-学代会会议文件.jpg" alt="学生代表大会会议文件" width="1080" height="2388" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+            <span class="count">同组 2 张</span>
+          </button>
+          <template data-more>
+            <img data-src="./图片/20-学代会会议现场.jpg" data-cap="学生代表大会会议现场">
+          </template>
+          <div class="entry-body">
+            <span class="entry-tag">学生代表大会</span>
+            <h3>学生代表大会参会记录</h3>
+            <p>汕头大学医学院第三十七次学生代表大会。想搞清楚汕大青年是怎么运作的，从一份会议文件读到现场议程，是最快的方式。</p>
+          </div>
+        </article>
+        
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-landscape" type="button" aria-label="放大查看：新媒体工作日常">
+            <img src="./图片/新媒体工作.jpg" alt="汕大青年新媒体工作日常" width="1706" height="1279" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+          </button>
+          <div class="entry-body">
+            <span class="entry-tag">校园媒体</span>
+            <h3>汕大青年新媒体部门干事</h3>
+            <p>作为汕大青年新媒体部门的一员，参与策划和制作过许多面向全校的推文。如果学弟学妹们对校园官方媒体的运作感兴趣，或者想私下交流排版、文案、摄影技巧，非常欢迎来找我“取经”。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 篇章 03：志愿公益 -->
+    <section class="chapter" id="volunteer">
+      <header class="chapter-head" data-reveal>
+        <span class="chapter-num">03</span>
+        <h2>志愿公益</h2>
+        <p>把时间花在别人身上，也是一种收获。一百多万步的公益步数，是走出来的。</p>
+      </header>
+      <div class="entries">
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-phone contain" type="button" aria-label="放大查看：公益捐步记录">
+            <img src="./图片/29-公益捐步截图.jpg" alt="公益捐步界面截图" width="1080" height="2388" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+          </button>
+          <div class="entry-body">
+            <span class="entry-tag">公益捐步</span>
+            <h3>公益捐步记录</h3>
+            <p>每天多走一段路，步数就能换成公益金。累计一百多万步，习惯一旦跑起来，就不太想停。</p>
+            <p class="entry-note">单日 24,927 步 · 持续参与中</p>
+          </div>
+        </article>
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-portrait" type="button" aria-label="放大查看：校园志愿服务">
+            <img src="./图片/22-志愿服务现场.jpg" alt="校园志愿服务现场" width="1279" height="1706" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+          </button>
+          <div class="entry-body">
+            <span class="entry-tag">校园志愿服务</span>
+            <h3>校园志愿服务</h3>
+            <p>穿上反光背心站在路口的那几个小时，比想象中更考验耐心，也更能看清一所学校是怎么运转的。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 篇章 04：生活与探索 -->
+    <section class="chapter" id="life">
+      <header class="chapter-head" data-reveal>
+        <span class="chapter-num">04</span>
+        <h2>生活与探索</h2>
+        <p>医学课业好重，但世界那么大，我还是想去看看。唱歌、买菜做饭、坐高铁到处跑，顺便在龙眼南路疯狂打卡。</p>
+      </header>
+      <div class="entries">
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-portrait" type="button" aria-label="放大查看：大一军训留影">
+            <img src="./图片/21-军训合照.jpg" alt="大一军训留影" width="1279" height="1706" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+            <span class="count">同组 2 张</span>
+          </button>
+          <template data-more>
+            <img data-src="./图片/15-军训大合影.jpg" data-cap="军训期间大合影">
+          </template>
+          <div class="entry-body">
+            <span class="entry-tag">军训</span>
+            <h3>大一军训留影</h3>
+            <p>军训是大学的第一课。站军姿的时候觉得难熬，回头看却是一段很干净的集体记忆。</p>
+          </div>
+        </article>
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-landscape" type="button" aria-label="放大查看：课余运动">
+            <img src="./图片/02-课余运动-篮球赛.jpg" alt="课余运动：篮球赛现场" width="1706" height="1279" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+          </button>
+          <div class="entry-body">
+            <span class="entry-tag">课余运动</span>
+            <h3>课余运动</h3>
+            <p>院系篮球赛的场边。运动是最直接的解压方式，也是最容易约到的社交。</p>
+          </div>
+        </article>
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-portrait" type="button" aria-label="放大查看：日常自己做饭">
+            <img src="./图片/16-做饭食材.jpg" alt="日常自己做饭的食材" width="1279" height="1706" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+          </button>
+          <div class="entry-body">
+            <span class="entry-tag">日常</span>
+            <h3>日常自己做饭</h3>
+            <p>自己买菜、洗切、下锅。会做饭之后，日子过得踏实很多，也更知道钱和时间花在哪。</p>
+          </div>
+        </article>
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-phone contain" type="button" aria-label="放大查看：持续的每日复盘笔记记录">
+            <img src="./图片/24-复盘笔记列表.jpg" alt="每日复盘笔记列表截图" width="1080" height="2388" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+            <span class="count">同组 4 张</span>
+          </button>
+          <template data-more>
+            <img data-src="./图片/30-复盘笔记-全部笔记.png" data-cap="笔记库：复盘持续更新">
+            <img data-src="./图片/05-复盘笔记-手写版.jpg" data-cap="手写版每日复盘">
+            <img data-src="./图片/31-手写学习笔记.jpg" data-cap="手写学习笔记">
+            <img data-src="./图片/13-复盘笔记-长文截图.jpg" data-cap="复盘长文记录">
+          </template>
+          <div class="entry-body">
+            <span class="entry-tag">每日复盘</span>
+            <h3>持续的每日复盘笔记记录</h3>
+            <p>我习惯每天复盘思考：接纳自己的短板，向外开放，向内专注。做成了什么、卡在哪里、明天怎么改——累计 281 条，还在继续。</p>
+          </div>
+        </article>
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-portrait" type="button" aria-label="放大查看：汕头龙眼南路城市打卡">
+            <img src="./图片/14-龙眼南路打卡.jpg" alt="汕头龙眼南路城市打卡" width="1279" height="1706" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+          </button>
+          <div class="entry-body">
+            <span class="entry-tag">城市探店</span>
+            <h3>汕头龙眼南路城市打卡</h3>
+            <p>在汕头读书，就把这座城市认真走一遍。龙眼南路是第一站，想知道本地哪家店最好吃、周末去哪放风，问我就行。</p>
+          </div>
+        </article>
+        <article class="entry" data-reveal>
+          <button class="entry-media ar-portrait" type="button" aria-label="放大查看：独自外出看世界">
+            <img src="./图片/33-高铁出行.jpg" alt="独自坐高铁外出看世界" width="1024" height="1366" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">⤢</span>
+          </button>
+          <div class="entry-body">
+            <span class="entry-tag">远行</span>
+            <h3>独自外出看世界</h3>
+            <p>一个人坐高铁去陌生的城市，是我给自己安排的成年礼。出发前做攻略，路上处理意外，回来写复盘——一趟行程能练到的东西，比想象中多。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 篇章 05：时间轴 -->
+    <section class="chapter" id="timeline">
+      <header class="chapter-head" data-reveal>
+        <span class="chapter-num">05</span>
+        <h2>时间轴与习惯</h2>
+        <p>把大一这一年按时间摊开看，脉络会清楚很多。</p>
+      </header>
+      <div class="timeline">
+        <div class="tl-item" data-reveal>
+          <div class="tl-when">2025.09</div>
+          <div class="tl-title">入学汕头大学医学院</div>
+          <div class="tl-desc">从军训和医学基础课开始，正式成为大一新生。</div>
+          <span class="tl-kind k-edu">教育经历</span>
+        </div>
+        <div class="tl-item" data-reveal>
+          <div class="tl-when">2025.10</div>
+          <div class="tl-title">受聘数码公司江南区主管</div>
+          <div class="tl-desc">2025 年 10 月 15 日获聘，负责区域业务对接与团队协作。</div>
+          <span class="tl-kind k-prac">实践与职务</span>
+        </div>
+        <div class="tl-item" data-reveal>
+          <div class="tl-when">2025.11</div>
+          <div class="tl-title">参加第三十七次学生代表大会</div>
+          <div class="tl-desc">完整参与会前文件准备与现场议程。</div>
+          <span class="tl-kind k-work">学生工作</span>
+        </div>
+        
+        <div class="tl-item" data-reveal>
+          <div class="tl-when">2025.12</div>
+          <div class="tl-title">加入汕大青年新媒体部门</div>
+          <div class="tl-desc">参与校园官方媒体的推文策划与视觉排版。</div>
+          <span class="tl-kind k-work">学生工作</span>
+        </div>
+
+        <div class="tl-item" data-reveal>
+          <div class="tl-when">2026.01</div>
+          <div class="tl-title">每日复盘累计 281 条</div>
+          <div class="tl-desc">把「睡前写一遍当天」变成不需要意志力的固定动作。</div>
+          <span class="tl-kind k-prac">长期习惯</span>
+        </div>
+        <div class="tl-item" data-reveal>
+          <div class="tl-when">2026.03</div>
+          <div class="tl-title">担任项目组长</div>
+          <div class="tl-desc">负责排期、分工与交付，带队完成阶段任务。</div>
+          <span class="tl-kind k-work">学生工作</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer" id="contact">
+      <div class="footer-inner">
+        <h2 data-reveal style="font-size: clamp(1.5rem,5.5vw,2.1rem); font-weight: 500;">📮 随时拉我聊天</h2>
+        <p data-reveal style="color: var(--c-muted); max-width: 46ch; margin-top: 12px; line-height: 1.6;">哪怕只是想吐槽一下早八起不来，或者想问问学校的琐事，欢迎随时戳我。比起给你建议，我更愿意做一个真诚的倾听者。</p>
+        <div class="contact">
+          <div class="contact-card" data-reveal>
+            <h3 style="font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--c-muted); font-weight: 600;">WeChat</h3>
+            <div style="margin-top: 10px;">
+              <b style="font-size: clamp(1.05rem,4.6vw,1.3rem); color: #fff; font-weight: 700;">lyz042188</b>
+            </div>
+          </div>
+          <div class="contact-card" data-reveal>
+            <h3 style="font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--c-muted); font-weight: 600;">Email</h3>
+            <div style="margin-top: 10px;">
+              <a href="mailto:1875537380@qq.com"><b style="font-size: clamp(1.05rem,4.6vw,1.3rem); color: #fff; font-weight: 700;">1875537380@qq.com</b></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-meta">
+          <span>© 2026 陆业镇 · 小陆学长</span>
+          <span>Vesper Style Aesthetic Integration</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <dialog class="lightbox" id="lightbox" aria-label="图片查看器">
+    <div class="lb-box">
+      <button class="lb-close" id="lbClose" aria-label="关闭">✕</button>
+      <button class="lb-btn lb-prev" id="lbPrev" aria-label="上一张">‹</button>
+      <img class="lb-img" id="lbImg" alt="">
+      <button class="lb-btn lb-next" id="lbNext" aria-label="下一张">›</button>
+      <p class="lb-cap"><span id="lbCap"></span></p>
+    </div>
+  </dialog>
+
+  <!-- 侧滑抽屉结构 -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <div class="drawer" id="pdfDrawer">
+    <div class="drawer-header">
+      <button class="btn btn-ghost" id="closeDrawer" style="padding:0 14px;">
+        ← 返回
+      </button>
+      <h3 class="drawer-title">新生入学指南</h3>
+      <a href="新生入学指南.pdf" download="新生入学指南.pdf" class="btn btn-solid" style="padding:0 14px;">
+        ↓ 下载 PDF
+      </a>
+    </div>
+    <div class="drawer-body">
+      <!-- 移动端「逐页图片」预览（A 方案）：图片由 JS 注入，宽屏自动隐藏、只保留下面的 iframe -->
+      <div class="pdfreader" id="pdfReader">
+        <div class="pdfreader-scroll" id="pdfReaderScroll" aria-label="新生入学指南 逐页预览">
+          <p class="pdfreader-hint">上下滑动逐页阅读（共 21 页）<br>要原文或转发，请点右上角「下载 PDF」</p>
+        </div>
+        <div class="pdfreader-bar">
+          <button class="btn btn-ghost" id="pdfPrev" type="button">上一页</button>
+          <span class="pdfreader-count" id="pdfCount">1 / 21</span>
+          <button class="btn btn-ghost" id="pdfNext" type="button">下一页</button>
+        </div>
+      </div>
+      <!-- 移动端兜底：手机浏览器（含微信内置）无法在 iframe 内渲染 PDF，这里给出系统阅读器入口 -->
+      <div class="drawer-fallback">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        <p>如果在此处无法正常预览文档<br>请点击下方按钮打开或下载查阅。</p>
+        <a class="btn btn-solid" id="pdfOpenLink" href="新生入学指南.pdf" target="_blank" rel="noopener" style="padding:0 20px;">打开 PDF 预览</a>
+      </div>
+      <!-- 预览框架（仅桌面端注入 src：移动端 iframe 渲染 PDF 会白屏，改为隐藏） -->
+      <iframe id="pdfFrame" data-src="新生入学指南.pdf" frameborder="0" title="PDF Preview"></iframe>
+    </div>
+  </div>
+
+<script>
+(function(){
+  'use strict';
+  
+  const appears = document.querySelectorAll('.appear, .badge-star, h1 em');
+  appears.forEach(el => {
+    el.addEventListener('animationend', () => el.classList.add('is-in'), {once: true});
+  });
+  
+  // 安全延时保底，防止动画被浏览器强制拦截
+  setTimeout(() => {
+    appears.forEach(el => el.classList.add('is-in'));
+  }, 2500);
+
+  // 标题与引言的逐字/模糊入场特效
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  const title = document.querySelector('[data-split-title]');
+  if (title && !reduce) {
+    let globalCharIdx = 0;
+    const walkSplit = (node) => {
+      [].slice.call(node.childNodes).forEach(n => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          const chars = n.nodeValue.split('');
+          chars.forEach(ch => {
+            if (/\s/.test(ch)) { 
+              frag.appendChild(document.createTextNode(ch)); 
+            } else {
+              const s = document.createElement('span');
+              s.className = 'ch';
+              s.textContent = ch;
+              s.style.display = 'inline-block';
+              s.style.animation = `in-pop 0.9s cubic-bezier(.22, 1, .36, 1) ${(0.3 + globalCharIdx * 0.05).toFixed(2)}s both`;
+              frag.appendChild(s);
+              globalCharIdx++;
+            }
+          });
+          node.replaceChild(frag, n);
+        } else if (n.nodeType === 1 && n.tagName !== 'BR') {
+          walkSplit(n);
+        }
+      });
+    };
+    walkSplit(title);
+  }
+
+  const blurEl = document.querySelector('[data-blur-slogan]');
+  if (blurEl && !reduce) {
+    let globalWordIdx = 0;
+    const walkBlur = (node) => {
+      [].slice.call(node.childNodes).forEach(n => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          (n.nodeValue.match(/[A-Za-z0-9]+|\s|[\s\S]/g) || []).forEach(u => {
+            if (/^\s+$/.test(u)) { 
+              frag.appendChild(document.createTextNode(u)); 
+            } else {
+              const s = document.createElement('span');
+              s.className = 'w';
+              s.textContent = u;
+              s.style.display = 'inline-block';
+              s.style.animation = `in-em 1.2s cubic-bezier(0.16,1,0.3,1) ${(0.8 + globalWordIdx * 0.035).toFixed(3)}s both`;
+              frag.appendChild(s);
+              globalWordIdx++;
+            }
+          });
+          node.replaceChild(frag, n);
+        } else if (n.nodeType === 1 && n.tagName !== 'BR') {
+          walkBlur(n);
+        }
+      });
+    };
+    walkBlur(blurEl);
+  }
+
+  const burger = document.querySelector('.burger');
+  const nav = document.querySelector('#site-nav');
+  if (burger) {
+    burger.addEventListener('click', () => {
+      const isOpen = document.body.classList.toggle('menu-open');
+      burger.setAttribute('aria-expanded', isOpen);
+    });
+    nav.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        document.body.classList.remove('menu-open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.body.classList.remove('menu-open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    window.addEventListener('resize', () => {
+      if (window.matchMedia('(min-width: 901px)').matches) {
+        document.body.classList.remove('menu-open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  const reveals = document.querySelectorAll('[data-reveal]');
+  if (!('IntersectionObserver' in window)) {
+    reveals.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    reveals.forEach(el => io.observe(el));
+  }
+
+  const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
+  let group = [], cur = 0;
+  function show(i) {
+    if (!lbImg) return;
+    cur = (i + group.length) % group.length;
+    lbImg.src = group[cur].src;
+    lbImg.alt = group[cur].cap;
+    if (lbCap) lbCap.textContent = group[cur].cap;
+  }
+  document.querySelectorAll('.entry-media').forEach(btn => {
+    if (btn.tagName !== 'BUTTON') return;
+    btn.addEventListener('click', () => {
+      group = [];
+      const img = btn.querySelector('img');
+      if (img) group.push({ src: img.getAttribute('src'), cap: (btn.getAttribute('aria-label') || '').replace(/^放大查看：/, '') });
+      const tpl = btn.parentNode.querySelector('template[data-more]');
+      if (tpl) {
+        tpl.content.querySelectorAll('img').forEach(m => {
+          group.push({ src: m.getAttribute('data-src'), cap: m.getAttribute('data-cap') || '' });
+        });
+      }
+      if (!group.length || !lb) return;
+      show(0);
+      typeof lb.showModal === 'function' ? lb.showModal() : lb.setAttribute('open', '');
+    });
+  });
+  
+  if (lb) {
+    const lbPrev = document.getElementById('lbPrev');
+    const lbNext = document.getElementById('lbNext');
+    const lbClose = document.getElementById('lbClose');
+    
+    if (lbPrev) lbPrev.addEventListener('click', () => show(cur - 1));
+    if (lbNext) lbNext.addEventListener('click', () => show(cur + 1));
+    if (lbClose) lbClose.addEventListener('click', () => lb.close());
+    lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+  }
+
+  /* 首屏粒子动效：Canvas 自绘，不依赖外链视频，微信内置浏览器里也照常显示 */
+  const pcanvas = document.getElementById('particles');
+  const heroVideo = document.querySelector('.hero-photo video');
+  if (pcanvas && pcanvas.getContext) {
+    const pctx = pcanvas.getContext('2d');
+    const heroBox = document.querySelector('.hero-photo');
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // 预渲染一张柔光圆点贴图，避免每帧创建径向渐变（移动端性能关键）
+    const dot = document.createElement('canvas');
+    dot.width = dot.height = 64;
+    const dctx = dot.getContext('2d');
+    const grad = dctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    grad.addColorStop(0, 'rgba(255,255,255,1)');
+    grad.addColorStop(0.35, 'rgba(255,255,255,0.35)');
+    grad.addColorStop(1, 'rgba(255,255,255,0)');
+    dctx.fillStyle = grad;
+    dctx.fillRect(0, 0, 64, 64);
+
+    let W = 0, H = 0, dust = [], fresh = true;
+
+    const seed = () => {
+      dust = Array.from({ length: Math.round(Math.max(45, Math.min(130, W * H / 14000))) }, () => ({
+        x: Math.random() * W, y: Math.random() * H,
+        v: 0.2 + Math.random() * 0.85,
+        s: 1.2 + Math.random() * 3.4,
+        a: 0.05 + Math.random() * 0.3,
+        ph: Math.random() * 6.283,
+        f: 0.5 + Math.random() * 1.7
+      }));
+    };
+
+    // 手机浏览器（微信 X5 同样如此）在地址栏收起、键盘弹出、旋屏时都会触发 resize；
+    // 尺寸没变就直接返回，免得把已经画好的画面反复刷黑
+    const layout = () => {
+      const w = Math.round(pcanvas.clientWidth || window.innerWidth);
+      const h = Math.round(pcanvas.clientHeight || window.innerHeight);
+      if (!w || !h || (w === W && h === H)) return false;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = w; H = h;
+      pcanvas.width = Math.round(W * dpr);
+      pcanvas.height = Math.round(H * dpr);
+      pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      seed();
+      fresh = true;
+      return true;
+    };
+
+    const paint = () => {
+      if (!still) for (const d of dust) { d.x += d.v; d.ph += 0.006 * d.f; }
+      pctx.globalCompositeOperation = 'source-over';
+      pctx.globalAlpha = 1;
+      // 重建/重排后的第一帧先铺满底色，其余帧用半透明底色拖出拖尾
+      pctx.fillStyle = fresh ? '#050505' : 'rgba(5,5,5,0.09)';
+      fresh = false;
+      pctx.fillRect(0, 0, W, H);
+      pctx.globalCompositeOperation = 'lighter';
+      for (const d of dust) {
+        if (d.x > W + 40) { d.x = -40; d.y = Math.random() * H; }
+        const y = d.y + Math.sin(d.x * 0.0045 + d.ph) * 46 + Math.sin(d.x * 0.0012 - d.ph * 0.7) * 62;
+        const r = d.s * 24;
+        pctx.globalAlpha = d.a * (0.6 + 0.4 * Math.sin(d.ph * 3));
+        pctx.drawImage(dot, d.x - r / 2, y - r / 2, r, r);
+      }
+      pctx.globalAlpha = 1;
+    };
+
+    // 只有视频真的解码出画面、并且没被藏起来时才让位给视频；
+    // 被微信拦掉、卡住、加载失败或 display:none 的视频一律让粒子顶上
+    const videoShowing = () => !!heroVideo && !heroVideo.paused && !heroVideo.ended &&
+      !heroVideo.error && heroVideo.readyState >= 2 && heroVideo.currentTime > 0.05 &&
+      heroVideo.offsetParent !== null;
+
+    const loop = () => {
+      requestAnimationFrame(loop);
+      // 切到后台或滚出首屏则整帧跳过
+      if (document.hidden || videoShowing()) return;
+      if (window.scrollY > (heroBox ? heroBox.offsetHeight : H)) return;
+      if (!W || !H) { if (!layout()) return; }
+      paint();
+    };
+
+    // 重排后必须补画一帧，否则「减弱动态效果」等静态模式下会留下一块空画布
+    const refresh = () => { if (layout()) paint(); };
+    window.addEventListener('resize', refresh);
+    window.addEventListener('orientationchange', refresh);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden && W && H) paint(); });
+
+    layout();
+    still ? paint() : loop();
+  }
+
+  /* 微信 X5 / iOS 会把自动播放静默拦掉，这里再主动拉起一次；失败也不影响上面的粒子兜底 */
+  if (heroVideo) {
+    const kick = () => { const p = heroVideo.play(); if (p && p.catch) p.catch(() => {}); };
+    kick();
+    document.addEventListener('WeixinJSBridgeReady', kick, false);
+    window.addEventListener('touchstart', kick, { once: true, passive: true });
+
+    /* 关键兜底：安卓微信 X5 会把「没真正出画面」的 <video> 画成一块不透明黑屏，正好盖住粒子层。
+       检测到视频没在出画面就加 .is-off 把它隐藏（恢复播放时自动撤掉），让粒子露出来。 */
+    const syncVideo = () => {
+      const alive = !heroVideo.paused && !heroVideo.ended && !heroVideo.error && heroVideo.readyState >= 2;
+      heroVideo.classList.toggle('is-off', !alive);
+    };
+    heroVideo.addEventListener('loadeddata', syncVideo);
+    heroVideo.addEventListener('playing', syncVideo);
+    heroVideo.addEventListener('error', syncVideo);
+    heroVideo.addEventListener('emptied', syncVideo);
+    heroVideo.addEventListener('stalled', () => setTimeout(syncVideo, 1200));
+    setTimeout(syncVideo, 1500);
+    setTimeout(syncVideo, 4000);
+  }
+
+  /* PDF 侧滑抽屉逻辑 */
+  const openDrawerBtn = document.getElementById('openGuideBtn');
+  const closeDrawerBtn = document.getElementById('closeDrawer');
+  const drawerBackdrop = document.getElementById('drawerBackdrop');
+  
+  const pdfFrame = document.getElementById('pdfFrame');
+
+  function openDrawer() {
+    // 只有桌面端才往 iframe 注入 src；移动端 iframe 渲染 PDF 必白屏，交给系统/微信自带阅读器
+    if (pdfFrame && !pdfFrame.src && window.matchMedia('(min-width: 901px)').matches) {
+      pdfFrame.src = pdfFrame.dataset.src;
+    }
+    document.body.classList.add('drawer-open');
+  }
+  function closeDrawer() {
+    document.body.classList.remove('drawer-open');
+  }
+
+  if(openDrawerBtn) openDrawerBtn.addEventListener('click', openDrawer);
+  if(closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
+  if(drawerBackdrop) drawerBackdrop.addEventListener('click', closeDrawer);
+
+  // Esc键也可关闭抽屉
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.body.classList.contains('drawer-open')) {
+      closeDrawer();
+    }
+  });
+
+  /* 移动端「逐页图片」预览（A 方案）：手机/微信内核不在 iframe 里渲染 PDF，改成逐页图片阅读。
+     图片放在 guide-preview/ 目录；重新导出 PDF 后要同步重新生成图片，并改这里的 PDF_PAGES。 */
+  const pdfReaderScroll = document.getElementById('pdfReaderScroll');
+  if (pdfReaderScroll) {
+    const PDF_PAGES = 21, PDF_W = 1241, PDF_H = 1754; // A4 按 150dpi 导出的图片尺寸
+    const pdfPrev = document.getElementById('pdfPrev');
+    const pdfNext = document.getElementById('pdfNext');
+    const pdfCount = document.getElementById('pdfCount');
+    const pages = [];
+    let cur = 1, ticking = false;
+
+    for (let i = 1; i <= PDF_PAGES; i++) {
+      const img = document.createElement('img');
+      img.className = 'pdfreader-page';
+      // 写上宽高：图片还没加载出来也先占好位，翻页定位才不会错位
+      img.setAttribute('width', PDF_W);
+      img.setAttribute('height', PDF_H);
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.alt = '新生入学指南 第 ' + i + ' 页';
+      img.src = 'guide-preview/p' + (i < 10 ? '0' + i : '' + i) + '.webp';
+      pdfReaderScroll.appendChild(img);
+      pages.push(img);
+    }
+
+    const syncBar = () => {
+      const top = pdfReaderScroll.scrollTop + 12;
+      let idx = 1;
+      for (let i = 0; i < pages.length; i++) { if (pages[i].offsetTop <= top) idx = i + 1; }
+      cur = idx;
+      if (pdfCount) pdfCount.textContent = cur + ' / ' + pages.length;
+      if (pdfPrev) pdfPrev.disabled = cur <= 1;
+      if (pdfNext) pdfNext.disabled = cur >= pages.length;
+    };
+
+    const goTo = (i) => {
+      const n = Math.max(1, Math.min(pages.length, i));
+      pdfReaderScroll.scrollTop = pages[n - 1].offsetTop - 8;
+      syncBar();
+    };
+
+    if (pdfPrev) pdfPrev.addEventListener('click', () => goTo(cur - 1));
+    if (pdfNext) pdfNext.addEventListener('click', () => goTo(cur + 1));
+    pdfReaderScroll.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { ticking = false; syncBar(); });
+    }, { passive: true });
+
+    // 每次打开抽屉都从第 1 页开始
+    if (openDrawerBtn) openDrawerBtn.addEventListener('click', () => { pdfReaderScroll.scrollTop = 0; syncBar(); });
+
+    syncBar();
+  }
+
+})();
+</script>
+</body>
+</html>
