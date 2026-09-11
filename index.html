@@ -7,10 +7,8 @@
 <meta name="description" content="陆业镇（小陆学长），汕头大学医学院大一学生。一个非典型医学生：泡图书馆、穿白大褂进科室、买菜做饭、坐高铁到处跑。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cg transform='rotate(-30 12 12)'%3E%3Ccircle cx='7.3' cy='3.2' r='1.45'/%3E%3Crect x='5.5' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Crect x='14.9' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Ccircle cx='16.7' cy='20.8' r='1.45'/%3E%3C/g%3E%3C/svg%3E">
 
-<!-- 性能优化：使用 preconnect 并行预加载字体，消除 @import 带来的首屏阻塞 -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<!-- 字体改为自托管：inter.woff2 已放在仓库根目录。原先外链 Google Fonts 实测 5.8 秒才返回，
+     而且它是阻塞首屏渲染的样式表，国内网络下经常直接卡住首屏 -->
 
 <script>document.documentElement.classList.add('js');</script>
 
@@ -18,11 +16,11 @@
 html, body { background: #000000 !important; color: #ffffff; }
 
 @font-face {
+  /* 只保留拉丁子集（约 71KB）：Inter 只影响英文和数字，中文继续走系统字体 */
   font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("inter.woff2") format("woff2");
 }
-@font-face {
-  font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap; src: url("instrument-serif-italic.woff2") format("woff2");
-}
+/* Instrument Serif 已移除：h1 em 里是中文「小陆学长」，这个字体永远命不中，只会白多一个 404 请求；
+   现有回退链 "Times New Roman", "STZhongsong", "SimSun" 效果一致 */
 
 :root {
   --bg: #000000;
@@ -380,7 +378,8 @@ body.drawer-open .drawer { transform: translateX(0); }
     <!-- 性能优化：保留了极小占位海报(poster)与 .hero-photo 的黑底做兜底 -->
     <!-- 注意：视频不能再带不透明背景色，否则播放失败时会整块盖住下面的粒子动效 -->
     <!-- 微信兼容：webkit-playsinline / x5-* 让微信 X5、WKWebView 允许内联自动播放；播不出来时由上方 Canvas 粒子兜底 -->
-    <video src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa.mp4" autoplay loop muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false" preload="auto" poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></video>
+    <!-- 首屏不下视频：这段 mp4 有 9.4MB，preload=auto 时手机端即使被 CSS 隐藏也照样下载；只有大屏才由 JS 注入 src -->
+    <video data-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa.mp4" autoplay loop muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false" preload="none" poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></video>
   </div>
   <div class="grain"></div>
 
@@ -1147,7 +1146,22 @@ body.drawer-open .drawer { transform: translateX(0); }
 
   /* 微信 X5 / iOS 会把自动播放静默拦掉，这里再主动拉起一次；失败也不影响上面的粒子兜底 */
   if (heroVideo) {
-    const kick = () => { const p = heroVideo.play(); if (p && p.catch) p.catch(() => {}); };
+    /* 手机首屏不下视频：这段 mp4 有 9.4MB，带 preload 时手机端即使被 CSS 隐藏也会去拉，
+       既拖慢打开速度又和图片抢带宽。改成只有大屏才把 data-src 写成 src。 */
+    const desktopMQ = window.matchMedia('(min-width: 901px)');
+    const loadVideo = () => {
+      if (desktopMQ.matches && !heroVideo.src && heroVideo.dataset.src) {
+        heroVideo.src = heroVideo.dataset.src;
+        heroVideo.load();
+      }
+    };
+    loadVideo();
+    if (desktopMQ.addEventListener) desktopMQ.addEventListener('change', loadVideo);
+
+    const kick = () => {
+      if (!heroVideo.src) return;
+      const p = heroVideo.play(); if (p && p.catch) p.catch(() => {});
+    };
     kick();
     document.addEventListener('WeixinJSBridgeReady', kick, false);
     window.addEventListener('touchstart', kick, { once: true, passive: true });
@@ -1200,28 +1214,42 @@ body.drawer-open .drawer { transform: translateX(0); }
      图片放在 guide-preview/ 目录；重新导出 PDF 后要同步重新生成图片，并改这里的 PDF_PAGES。 */
   const pdfReaderScroll = document.getElementById('pdfReaderScroll');
   if (pdfReaderScroll) {
-    const PDF_PAGES = 21, PDF_W = 1241, PDF_H = 1754; // A4 按 150dpi 导出的图片尺寸
+    const PDF_PAGES = 21, PDF_W = 1000, PDF_H = 1413; // A4 按 120dpi 导出的图片尺寸（1000px 宽 / q72）
     const pdfPrev = document.getElementById('pdfPrev');
     const pdfNext = document.getElementById('pdfNext');
     const pdfCount = document.getElementById('pdfCount');
     const pages = [];
-    let cur = 1, ticking = false;
+    let built = false, cur = 1, ticking = false;
 
-    for (let i = 1; i <= PDF_PAGES; i++) {
-      const img = document.createElement('img');
-      img.className = 'pdfreader-page';
-      // 写上宽高：图片还没加载出来也先占好位，翻页定位才不会错位
-      img.setAttribute('width', PDF_W);
-      img.setAttribute('height', PDF_H);
-      img.loading = 'lazy';
-      img.decoding = 'async';
-      img.alt = '新生入学指南 第 ' + i + ' 页';
-      img.src = 'guide-preview/p' + (i < 10 ? '0' + i : '' + i) + '.webp';
-      pdfReaderScroll.appendChild(img);
-      pages.push(img);
-    }
+    /* 图片不在首屏就创建：手机上「懒加载」的预取距离很大，21 张图（1.5MB）会在用户还没点开指南时
+       就全部下发，白白和首屏抢带宽。改成第一次点「新生入学指南」时才建，抽屉滑入的 0.5s 正好加载第 1 页。 */
+    const build = () => {
+      if (built) return;
+      built = true;
+      for (let i = 1; i <= PDF_PAGES; i++) {
+        const img = document.createElement('img');
+        img.className = 'pdfreader-page';
+        // 写上宽高：图片还没加载出来也先占好位，翻页定位才不会错位
+        img.setAttribute('width', PDF_W);
+        img.setAttribute('height', PDF_H);
+        img.loading = i <= 2 ? 'eager' : 'lazy';
+        img.decoding = 'async';
+        if (i === 1) img.fetchPriority = 'high'; // 第 1 页最高优先级
+        img.alt = '新生入学指南 第 ' + i + ' 页';
+        img.src = 'guide-preview/p' + (i < 10 ? '0' + i : '' + i) + '.webp';
+        pdfReaderScroll.appendChild(img);
+        pages.push(img);
+      }
+    };
+
+    // 只提前拉起「当前页的下一页」，翻页时基本不用等；写成链式会把 21 页全拉下来
+    const prefetch = (n) => {
+      const nx = pages[n];
+      if (nx && nx.loading === 'lazy') nx.loading = 'eager';
+    };
 
     const syncBar = () => {
+      if (!pages.length) return;
       const top = pdfReaderScroll.scrollTop + 12;
       let idx = 1;
       for (let i = 0; i < pages.length; i++) { if (pages[i].offsetTop <= top) idx = i + 1; }
@@ -1229,6 +1257,7 @@ body.drawer-open .drawer { transform: translateX(0); }
       if (pdfCount) pdfCount.textContent = cur + ' / ' + pages.length;
       if (pdfPrev) pdfPrev.disabled = cur <= 1;
       if (pdfNext) pdfNext.disabled = cur >= pages.length;
+      prefetch(cur); // 下一页（pages 下标从 0 开始，cur 正好是下一页的索引）
     };
 
     const goTo = (i) => {
@@ -1245,8 +1274,12 @@ body.drawer-open .drawer { transform: translateX(0); }
       requestAnimationFrame(() => { ticking = false; syncBar(); });
     }, { passive: true });
 
-    // 每次打开抽屉都从第 1 页开始
-    if (openDrawerBtn) openDrawerBtn.addEventListener('click', () => { pdfReaderScroll.scrollTop = 0; syncBar(); });
+    // 点「新生入学指南」时才建图片，并且每次打开都从第 1 页开始；宽屏走 iframe，不建图片
+    if (openDrawerBtn) openDrawerBtn.addEventListener('click', () => {
+      if (window.matchMedia('(max-width: 900px)').matches) build();
+      pdfReaderScroll.scrollTop = 0;
+      syncBar();
+    });
 
     syncBar();
   }
